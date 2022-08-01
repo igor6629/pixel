@@ -1,9 +1,11 @@
 package main
 
 import (
+	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/theme"
 	"github.com/igor6629/pixel/apptype"
+	"github.com/igor6629/pixel/pxcanvas"
 	"github.com/igor6629/pixel/swatch"
 	"github.com/igor6629/pixel/ui"
 	"image/color"
@@ -18,7 +20,18 @@ func main() {
 		SwatchSelected: 0,
 	}
 
+	pixelCancasConfig := apptype.PxCanvasConfig{
+		DrawingArea:  fyne.NewSize(600, 600),
+		CanvasOffset: fyne.NewPos(0, 0),
+		PxRows:       10,
+		PxCols:       10,
+		PxSize:       30,
+	}
+
+	pixelCanvas := pxcanvas.NewPxCanvas(&state, pixelCancasConfig)
+
 	appInit := ui.AppInit{
+		PixelCanvas: pixelCanvas,
 		PixelWindow: pixelWindow,
 		State:       &state,
 		Swatches:    make([]*swatch.Swatch, 0, 64),

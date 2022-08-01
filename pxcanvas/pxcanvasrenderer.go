@@ -34,6 +34,18 @@ func (p *PxCanvasRenderer) Layout(size fyne.Size) {
 	p.LayoutBorder(size)
 }
 
+func (p *PxCanvasRenderer) Refresh() {
+	if p.pxCanvas.reloadImage {
+		p.canvasImage = canvas.NewImageFromImage(p.pxCanvas.PixelData)
+		p.canvasImage.ScaleMode = canvas.ImageScalePixels
+		p.canvasImage.FillMode = canvas.ImageFillContain
+		p.pxCanvas.reloadImage = false
+	}
+
+	p.Layout(p.pxCanvas.Size())
+	canvas.Refresh(p.canvasImage)
+}
+
 func (p *PxCanvasRenderer) LayoutCanvas(size fyne.Size) {
 	imgPxWidth := p.pxCanvas.PxCols
 	imgPxHeight := p.pxCanvas.PxRows
