@@ -9,6 +9,11 @@ type PxCanvasRenderer struct {
 	pxCanvas     *PxCanvas
 	canvasImage  *canvas.Image
 	canvasBorder []canvas.Line
+	canvasCursor []fyne.CanvasObject
+}
+
+func (p *PxCanvasRenderer) SetCursor(objects []fyne.CanvasObject) {
+	p.canvasCursor = objects
 }
 
 // MinSize widgetRenderer interface implementation
@@ -24,6 +29,7 @@ func (p *PxCanvasRenderer) Objects() []fyne.CanvasObject {
 	}
 
 	objects = append(objects, p.canvasImage)
+	objects = append(objects, p.canvasCursor...)
 	return objects
 }
 

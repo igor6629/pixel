@@ -1,12 +1,13 @@
 package apptype
 
 import (
+	"fyne.io/fyne/v2/driver/desktop"
 	"image/color"
 
 	"fyne.io/fyne/v2"
 )
 
-type BrushType int
+type BrushType = int
 
 type PxCanvasConfig struct {
 	DrawingArea    fyne.Size
@@ -24,4 +25,9 @@ type State struct {
 
 func (s *State) SetFilePath(path string) {
 	s.FilePath = path
+}
+
+type Brushable interface {
+	SetColor(c color.Color, x, y int)
+	MouseToCanvasXY(ev *desktop.MouseEvent) (*int, *int)
 }

@@ -16,19 +16,19 @@ func main() {
 	pixelWindow := pixelApp.NewWindow("Pixel")
 
 	state := apptype.State{
-		BrushColor:     color.NRGBA{0, 0, 0, 255},
+		BrushColor:     color.NRGBA{255, 255, 255, 255},
 		SwatchSelected: 0,
 	}
 
-	pixelCancasConfig := apptype.PxCanvasConfig{
+	pixelCanvasConfig := apptype.PxCanvasConfig{
 		DrawingArea:  fyne.NewSize(600, 600),
 		CanvasOffset: fyne.NewPos(0, 0),
 		PxRows:       10,
 		PxCols:       10,
-		PxSize:       30,
+		PxSize:       20,
 	}
 
-	pixelCanvas := pxcanvas.NewPxCanvas(&state, pixelCancasConfig)
+	pixelCanvas := pxcanvas.NewPxCanvas(&state, pixelCanvasConfig)
 
 	appInit := ui.AppInit{
 		PixelCanvas: pixelCanvas,
