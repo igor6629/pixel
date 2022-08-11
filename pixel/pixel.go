@@ -39,5 +39,6 @@ func main() {
 
 	ui.Setup(&appInit)
 	pixelApp.Settings().SetTheme(theme.DarkTheme())
+	appInit.PixelWindow.CenterOnScreen()
 	appInit.PixelWindow.ShowAndRun()
 }
